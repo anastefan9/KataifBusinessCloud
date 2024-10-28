@@ -39,7 +39,9 @@ async def verify_google_token(
         print(user_profile_image)
         print(user.profile_image)
 
-        return GoogleAuthResponse(access_token=access_token, refresh_token=refresh_token, access_token_expires_in=ACCESS_TOKEN_EXPIRE_MINUTES*60)
+        user_data = UserBase.model_validate(user)
+
+        return GoogleAuthResponse(access_token=access_token, refresh_token=refresh_token, access_token_expires_in=ACCESS_TOKEN_EXPIRE_MINUTES*60, user=user_data)
     except HTTPException:
         raise HTTPException(status_code=401, detail="Invalid OAuth2 token.")
 

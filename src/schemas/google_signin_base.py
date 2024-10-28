@@ -9,6 +9,7 @@ class GoogleAuthResponse(BaseModel):
     access_token: str
     refresh_token: str
     access_token_expires_in: int
+    user: UserBase
 
 class RefreshAccessToken(BaseModel):
     access_token: str
